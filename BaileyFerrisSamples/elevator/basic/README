@@ -1,0 +1,140 @@
+ /* Bailey Ferris
+ * CSCI 503
+ * Lab 4
+ *
+ * Part 1: Concurrent Elevator Simulation - Basic version
+ *
+ * README file for basic.c
+ *
+ *
+ */
+
+
+1. compile by typing make
+
+2. run by typing ./basic followed by 6 arguments:
+    1. Number of elevators (must be > 0).
+    2. Number of floors (must be > 0).
+    3. How often people arrive (must be > 0).
+    4. Elevator speed (must be > 0).
+    5. Total time to simulate (must be > 0).
+    6. Seed of the random function
+
+Example Output:
+
+./imprvd 3 9 2 2 60 3
+
+[2] Person 0 arrives on floor 4, waiting to go to floor 5
+[2] Elevator 2 starts moving from 1 to 4
+[4] Person 1 arrives on floor 1, waiting to go to floor 7
+[4] Elevator 1 arrives at floor 1
+[4] Elevator 1 picks up Person 1
+[4] Elevator 1 starts moving from 1 to 7
+[6] Person 2 arrives on floor 7, waiting to go to floor 5
+[6] Elevator 0 starts moving from 1 to 7
+[8] Person 3 arrives on floor 4, waiting to go to floor 2
+[8] Elevator 2 arrives at floor 4
+[8] Elevator 2 picks up Person 0
+[8] Elevator 2 starts moving from 4 to 5
+[10] Person 4 arrives on floor 2, waiting to go to floor 5
+[10] Elevator 2 arrives at floor 5
+[10] Elevator 2 drops Person 0
+[10] Elevator 2 starts moving from 5 to 4
+[12] Person 5 arrives on floor 5, waiting to go to floor 1
+[12] Elevator 2 arrives at floor 4
+[12] Elevator 2 picks up Person 3
+[12] Elevator 2 starts moving from 4 to 2
+[14] Person 6 arrives on floor 2, waiting to go to floor 5
+[16] Person 7 arrives on floor 1, waiting to go to floor 7
+[16] Elevator 1 arrives at floor 7
+[16] Elevator 1 drops Person 1
+[16] Elevator 1 starts moving from 7 to 2
+[16] Elevator 2 arrives at floor 2
+[16] Elevator 2 drops Person 3
+[16] Elevator 2 starts moving from 2 to 5
+[18] Person 8 arrives on floor 2, waiting to go to floor 5
+[18] Elevator 0 arrives at floor 7
+[18] Elevator 0 picks up Person 2
+[18] Elevator 0 starts moving from 7 to 5
+[20] Person 9 arrives on floor 4, waiting to go to floor 8
+[22] Elevator 0 arrives at floor 5
+[22] Elevator 0 drops Person 2
+[22] Elevator 0 starts moving from 5 to 2
+[22] Person 10 arrives on floor 1, waiting to go to floor 5
+[22] Elevator 2 arrives at floor 5
+[22] Elevator 2 picks up Person 5
+[22] Elevator 2 starts moving from 5 to 1
+[24] Person 11 arrives on floor 4, waiting to go to floor 5
+[26] Person 12 arrives on floor 6, waiting to go to floor 3
+[26] Elevator 1 arrives at floor 2
+[26] Elevator 1 picks up Person 4
+[26] Elevator 1 starts moving from 2 to 5
+[28] Elevator 0 arrives at floor 2
+[28] Elevator 0 picks up Person 6
+[28] Elevator 0 starts moving from 2 to 5
+[28] Person 13 arrives on floor 3, waiting to go to floor 2
+[30] Person 14 arrives on floor 5, waiting to go to floor 8
+[30] Elevator 2 arrives at floor 1
+[30] Elevator 2 drops Person 5
+[30] Elevator 2 arrives at floor 1
+[30] Elevator 2 picks up Person 7
+[30] Elevator 2 starts moving from 1 to 7
+[32] Person 15 arrives on floor 5, waiting to go to floor 8
+[32] Elevator 1 arrives at floor 5
+[32] Elevator 1 drops Person 4
+[32] Elevator 1 starts moving from 5 to 2
+[34] Elevator 0 arrives at floor 5
+[34] Elevator 0 drops Person 6
+[34] Elevator 0 starts moving from 5 to 4
+[34] Person 16 arrives on floor 6, waiting to go to floor 9
+[36] Elevator 0 arrives at floor 4
+[36] Elevator 0 picks up Person 9
+[36] Elevator 0 starts moving from 4 to 8
+[36] Person 17 arrives on floor 5, waiting to go to floor 2
+[38] Person 18 arrives on floor 3, waiting to go to floor 5
+[38] Elevator 1 arrives at floor 2
+[38] Elevator 1 picks up Person 8
+[38] Elevator 1 starts moving from 2 to 5
+[40] Person 19 arrives on floor 1, waiting to go to floor 5
+[42] Person 20 arrives on floor 9, waiting to go to floor 5
+[42] Elevator 2 arrives at floor 7
+[42] Elevator 2 drops Person 7
+[42] Elevator 2 starts moving from 7 to 1
+[44] Elevator 0 arrives at floor 8
+[44] Elevator 0 drops Person 9
+[44] Elevator 0 starts moving from 8 to 4
+[44] Person 21 arrives on floor 5, waiting to go to floor 2
+[44] Elevator 1 arrives at floor 5
+[44] Elevator 1 drops Person 8
+[44] Elevator 1 starts moving from 5 to 6
+[46] Person 22 arrives on floor 8, waiting to go to floor 4
+[46] Elevator 1 arrives at floor 6
+[46] Elevator 1 picks up Person 12
+[46] Elevator 1 starts moving from 6 to 3
+[48] Person 23 arrives on floor 8, waiting to go to floor 9
+[50] Person 24 arrives on floor 8, waiting to go to floor 9
+[52] Elevator 0 arrives at floor 4
+[52] Elevator 0 picks up Person 11
+[52] Elevator 0 starts moving from 4 to 5
+[52] Person 25 arrives on floor 5, waiting to go to floor 8
+[52] Elevator 1 arrives at floor 3
+[52] Elevator 1 drops Person 12
+[52] Elevator 1 arrives at floor 3
+[52] Elevator 1 picks up Person 13
+[52] Elevator 1 starts moving from 3 to 2
+[54] Elevator 0 arrives at floor 5
+[54] Elevator 0 drops Person 11
+[54] Elevator 0 arrives at floor 5
+[54] Elevator 0 picks up Person 14
+[54] Elevator 0 starts moving from 5 to 8
+[54] Elevator 2 arrives at floor 1
+[54] Elevator 2 picks up Person 10
+[54] Elevator 2 starts moving from 1 to 5
+[54] Person 26 arrives on floor 4, waiting to go to floor 9
+[54] Elevator 1 arrives at floor 2
+[54] Elevator 1 drops Person 13
+[54] Elevator 1 starts moving from 2 to 5
+[56] Person 27 arrives on floor 3, waiting to go to floor 7
+[58] Person 28 arrives on floor 9, waiting to go to floor 3
+Simulation result: 29 people have started, 13 people have finished during 60 seconds
+

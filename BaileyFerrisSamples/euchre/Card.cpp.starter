@@ -1,0 +1,52 @@
+#include "Card.h"
+
+#include <string>
+
+using namespace std;
+
+const string Card::RANK_TWO = "Two";
+const string Card::RANK_THREE = "Three";
+const string Card::RANK_FOUR = "Four";
+const string Card::RANK_FIVE = "Five";
+const string Card::RANK_SIX = "Six";
+const string Card::RANK_SEVEN = "Seven";
+const string Card::RANK_EIGHT = "Eight";
+const string Card::RANK_NINE = "Nine";
+const string Card::RANK_TEN = "Ten";
+const string Card::RANK_JACK = "Jack";
+const string Card::RANK_QUEEN = "Queen";
+const string Card::RANK_KING = "King";
+const string Card::RANK_ACE = "Ace";
+
+const string Card::SUIT_SPADES = "Spades";
+const string Card::SUIT_HEARTS = "Hearts";
+const string Card::SUIT_CLUBS = "Clubs";
+const string Card::SUIT_DIAMONDS = "Diamonds";
+
+////////////////////////////////////////////////////////////////////////////////
+// Suits in order from lowest suit to highest suit.
+static const string SUIT_NAMES_BY_WEIGHT[] = {
+  Card::SUIT_SPADES,
+  Card::SUIT_HEARTS,
+  Card::SUIT_CLUBS,
+  Card::SUIT_DIAMONDS
+};
+static const int NUM_SUITS = 4;
+
+// Ranks in order from lowest rank to highest rank.
+static const string RANK_NAMES_BY_WEIGHT[] = {
+  Card::RANK_TWO,
+  Card::RANK_THREE,
+  Card::RANK_FOUR,
+  Card::RANK_FIVE,
+  Card::RANK_SIX,
+  Card::RANK_SEVEN,
+  Card::RANK_EIGHT,
+  Card::RANK_NINE,
+  Card::RANK_TEN,
+  Card::RANK_JACK,
+  Card::RANK_QUEEN,
+  Card::RANK_KING,
+  Card::RANK_ACE
+};
+static const int NUM_RANKS = 13;
